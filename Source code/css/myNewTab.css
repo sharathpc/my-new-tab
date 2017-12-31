@@ -1,0 +1,480 @@
+html,
+body {
+  margin: 0px;
+  color: #ffffff;
+  position: relative;
+}
+/* CSS Preloader styles starts */
+#preloader {
+  position: absolute;
+  margin: 20% 50%;
+  width: 50px;
+}
+#preloader:before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+#preloader .circular {
+  animation: rotate 2s linear infinite;
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+#preloader .circular .path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+@keyframes color {
+  100%,
+  0% {
+    stroke: #d62d20;
+  }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%,
+  90% {
+    stroke: #ffa700;
+  }
+}
+/* CSS Preloader styles ends */
+#content {
+  display: none;
+  /* Bookmark styles starts */
+  /* Bookmark styles ends */
+  /* Footer Quote styles starts */
+  /* Footer Quote styles ends */
+  /* Wallpaper credits styles starts */
+  /* Wallpaper credits styles ends */
+}
+#content #bookmarks {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+}
+#content #bookmarks a {
+  display: inline-block;
+}
+#content #bookmarks a i {
+  width: 25px;
+  height: 25px;
+  background: url("/img/logos_sprite.png");
+  background-repeat: no-repeat;
+  display: inline-block;
+  -webkit-transition: all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  outline: none;
+}
+#content #bookmarks a i:hover {
+  transform: scale(1.5);
+}
+#content #bookmarks #accounts_icon {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  background-position: -8px -8px;
+  background-size: 100px;
+  margin: 5px;
+}
+#content #bookmarks #scrollContainer ul {
+  width: 50px;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  max-height: 500px;
+  overflow: auto;
+  border-radius: 15px 0px 0px 15px;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#content #bookmarks #scrollContainer ul::-webkit-scrollbar {
+  width: 4px;
+  margin: 2px 2px;
+  background-color: rgba(29, 29, 29, 0.1);
+}
+#content #bookmarks #scrollContainer ul::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #868686;
+}
+#content #bookmarks #scrollContainer ul li {
+  text-align: center;
+  display: block;
+  padding: 5px 0px;
+}
+#content #bookmarks #scrollContainer ul li:first-child {
+  padding-top: 10px;
+}
+#content #bookmarks #scrollContainer ul li:last-child {
+  padding-bottom: 10px;
+}
+#content #bookmarks #scrollContainer ul li i {
+  background-size: 70px;
+}
+#content #bookmarks #scrollContainer ul li #drive_icon {
+  background-position: -7px -38px;
+}
+#content #bookmarks #scrollContainer ul li #jira_icon {
+  background-position: -38px -100px;
+}
+#content #bookmarks #scrollContainer ul li #bitbucket_icon {
+  background-position: -38px -130px;
+}
+#content #bookmarks #scrollContainer ul li #docs_icon {
+  background-position: -38px -6px;
+}
+#content #bookmarks #scrollContainer ul li #sheets_icon {
+  background-position: -38px -38px;
+}
+#content #bookmarks #scrollContainer ul li #slides_icon {
+  background-position: -38px -68px;
+}
+#content #bookmarks #scrollContainer ul li #calendar_icon {
+  background-position: -7px -130px;
+}
+#content #bookmarks #scrollContainer ul li #hangouts_icon {
+  background-position: -7px -68px;
+}
+#content #bookmarks #scrollContainer ul li #photos_icon {
+  background-position: -7px -100px;
+}
+#content #bookmarks #scrollContainer ul li #JSON_icon {
+  background-position: -7px -162px;
+}
+#content #bookmarks #scrollContainer ul li #tinyPNG_icon {
+  background-position: -38px -162px;
+}
+#content #quoteContainer {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  text-align: center;
+  color: #ffffff;
+  width: 100%;
+  font-size: 1.2em;
+}
+#content #quoteContainer > div {
+  margin: 0px 200px;
+}
+#content #quoteContainer > div #quote {
+  font-weight: bold;
+}
+#content #unsplashContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  color: #5f5f5f;
+}
+#content #unsplashContainer a {
+  color: #b3ecff;
+}
+#content #clock {
+  width: 370px;
+  position: fixed;
+  bottom: -22px;
+  left: -82px;
+  transform: scale(0.7);
+  /*-------------------------Weekdays--------------------------*/
+  /*-------------------------AM/PM--------------------------*/
+}
+#content #clock::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 20px;
+  border-radius: 100%;
+  left: 50%;
+  margin-left: -200px;
+  bottom: 2px;
+  z-index: -1;
+}
+#content #clock .display {
+  text-align: center;
+  padding: 40px 20px 20px;
+  border-radius: 6px;
+  position: relative;
+  height: 54px;
+}
+#content #clock.dark {
+  /*-------------------------The Digits--------------------------*/
+}
+#content #clock.dark .digits div {
+  text-align: left;
+  position: relative;
+  width: 28px;
+  height: 50px;
+  display: inline-block;
+  margin: 0 4px;
+  /*-------------------------The dots-------------------------*/
+}
+#content #clock.dark .digits div.dots {
+  width: 5px;
+}
+#content #clock.dark .digits div.dots:before,
+#content #clock.dark .digits div.dots:after {
+  width: 5px;
+  height: 5px;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  background-color: #ffffff;
+}
+#content #clock.dark .digits div.dots:after {
+  top: 34px;
+}
+#content #clock.dark .digits div span {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  opacity: 0;
+  position: absolute;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  transition: 0.25s;
+}
+#content #clock.dark .digits div span:before,
+#content #clock.dark .digits div span:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+}
+#content #clock.dark .digits div.one .d5,
+#content #clock.dark .digits div.one .d7 {
+  opacity: 1;
+}
+#content #clock.dark .digits div.two .d1,
+#content #clock.dark .digits div.two .d5,
+#content #clock.dark .digits div.two .d2,
+#content #clock.dark .digits div.two .d6,
+#content #clock.dark .digits div.two .d3 {
+  opacity: 1;
+}
+#content #clock.dark .digits div.three .d1,
+#content #clock.dark .digits div.three .d5,
+#content #clock.dark .digits div.three .d2,
+#content #clock.dark .digits div.three .d7,
+#content #clock.dark .digits div.three .d3 {
+  opacity: 1;
+}
+#content #clock.dark .digits div.four .d5,
+#content #clock.dark .digits div.four .d2,
+#content #clock.dark .digits div.four .d4,
+#content #clock.dark .digits div.four .d7 {
+  opacity: 1;
+}
+#content #clock.dark .digits div.five .d1,
+#content #clock.dark .digits div.five .d2,
+#content #clock.dark .digits div.five .d4,
+#content #clock.dark .digits div.five .d3,
+#content #clock.dark .digits div.five .d7 {
+  opacity: 1;
+}
+#content #clock.dark .digits div.six .d1,
+#content #clock.dark .digits div.six .d2,
+#content #clock.dark .digits div.six .d4,
+#content #clock.dark .digits div.six .d3,
+#content #clock.dark .digits div.six .d6,
+#content #clock.dark .digits div.six .d7 {
+  opacity: 1;
+}
+#content #clock.dark .digits div.seven .d1,
+#content #clock.dark .digits div.seven .d5,
+#content #clock.dark .digits div.seven .d7 {
+  opacity: 1;
+}
+#content #clock.dark .digits div.eight .d1,
+#content #clock.dark .digits div.eight .d2,
+#content #clock.dark .digits div.eight .d3,
+#content #clock.dark .digits div.eight .d4,
+#content #clock.dark .digits div.eight .d5,
+#content #clock.dark .digits div.eight .d6,
+#content #clock.dark .digits div.eight .d7 {
+  opacity: 1;
+}
+#content #clock.dark .digits div.nine .d1,
+#content #clock.dark .digits div.nine .d2,
+#content #clock.dark .digits div.nine .d3,
+#content #clock.dark .digits div.nine .d4,
+#content #clock.dark .digits div.nine .d5,
+#content #clock.dark .digits div.nine .d7 {
+  opacity: 1;
+}
+#content #clock.dark .digits div.zero .d1,
+#content #clock.dark .digits div.zero .d3,
+#content #clock.dark .digits div.zero .d4,
+#content #clock.dark .digits div.zero .d5,
+#content #clock.dark .digits div.zero .d6,
+#content #clock.dark .digits div.zero .d7 {
+  opacity: 1;
+}
+#content #clock.dark .digits .d1 {
+  height: 5px;
+  width: 16px;
+  top: 0;
+  left: 6px;
+}
+#content #clock.dark .digits .d1:before {
+  border-width: 0 5px 5px 0;
+  border-right-color: inherit;
+  left: -5px;
+}
+#content #clock.dark .digits .d1:after {
+  border-width: 0 0 5px 5px;
+  border-left-color: inherit;
+  right: -5px;
+}
+#content #clock.dark .digits .d2 {
+  height: 5px;
+  width: 16px;
+  top: 24px;
+  left: 6px;
+}
+#content #clock.dark .digits .d2:before {
+  border-width: 3px 4px 2px;
+  border-right-color: inherit;
+  left: -8px;
+}
+#content #clock.dark .digits .d2:after {
+  border-width: 3px 4px 2px;
+  border-left-color: inherit;
+  right: -8px;
+}
+#content #clock.dark .digits .d3 {
+  height: 5px;
+  width: 16px;
+  top: 48px;
+  left: 6px;
+}
+#content #clock.dark .digits .d3:before {
+  border-width: 5px 5px 0 0;
+  border-right-color: inherit;
+  left: -5px;
+}
+#content #clock.dark .digits .d3:after {
+  border-width: 5px 0 0 5px;
+  border-left-color: inherit;
+  right: -5px;
+}
+#content #clock.dark .digits .d4 {
+  width: 5px;
+  height: 14px;
+  top: 7px;
+  left: 0;
+}
+#content #clock.dark .digits .d4:before {
+  border-width: 0 5px 5px 0;
+  border-bottom-color: inherit;
+  top: -5px;
+}
+#content #clock.dark .digits .d4:after {
+  border-width: 0 0 5px 5px;
+  border-left-color: inherit;
+  bottom: -5px;
+}
+#content #clock.dark .digits .d5 {
+  width: 5px;
+  height: 14px;
+  top: 7px;
+  right: 0;
+}
+#content #clock.dark .digits .d5:before {
+  border-width: 0 0 5px 5px;
+  border-bottom-color: inherit;
+  top: -5px;
+}
+#content #clock.dark .digits .d5:after {
+  border-width: 5px 0 0 5px;
+  border-top-color: inherit;
+  bottom: -5px;
+}
+#content #clock.dark .digits .d6 {
+  width: 5px;
+  height: 14px;
+  top: 32px;
+  left: 0;
+}
+#content #clock.dark .digits .d6:before {
+  border-width: 0 5px 5px 0;
+  border-bottom-color: inherit;
+  top: -5px;
+}
+#content #clock.dark .digits .d6:after {
+  border-width: 0 0 5px 5px;
+  border-left-color: inherit;
+  bottom: -5px;
+}
+#content #clock.dark .digits .d7 {
+  width: 5px;
+  height: 14px;
+  top: 32px;
+  right: 0;
+}
+#content #clock.dark .digits .d7:before {
+  border-width: 0 0 5px 5px;
+  border-bottom-color: inherit;
+  top: -5px;
+}
+#content #clock.dark .digits .d7:after {
+  border-width: 5px 0 0 5px;
+  border-top-color: inherit;
+  bottom: -5px;
+}
+#content #clock .weekdays {
+  font-size: 12px;
+  position: absolute;
+  width: 100%;
+  top: 10px;
+  left: 16px;
+  text-align: center;
+  font-weight: bold;
+}
+#content #clock .weekdays span {
+  opacity: 0.2;
+  padding: 0 10px;
+}
+#content #clock .weekdays span.active {
+  opacity: 1;
+}
+#content #clock .ampm {
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+  font-size: 14px;
+  font-weight: bold;
+}
