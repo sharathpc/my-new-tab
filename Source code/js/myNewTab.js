@@ -1,26 +1,41 @@
 const imageCategory = ['nature','wallpaper','places','computer','transportation','travel','buildings'];
 const quoteCategory = ['movies','movies','movies','movies','movies','movies','movies','famous'];
 
-let randomNumber = 0;
-let wallpaperResponse = '';
-let quoteText = '';
+var randomNumber = 0
+  , wallpaperResponse = ''
+  , quoteText = '';
 
 $(document).ready(function(){
   //chrome.storage.sync.clear();
-  randomNumber = Math.floor((Math.random() * imageCategory.length+1));
+  assertData();
+});
+
+function assertData(){
+  randomNumber = Math.floor(Math.random() * imageCategory.length+1);
   chrome.storage.sync.get(function(_data){
-    if(_data.timeStamp != undefined && parseInt(Math.abs(new Date()-new Date(_data.timeStamp))/300000) == 0){
+    if(_data.timeStamp != undefined && _data.wallpaperData.length>1 && parseInt(Math.abs(new Date()-new Date(_data.timeStamp))/3000) == 0){
+      $('#preloader').show();
+      _data.wallpaperData.slice(1,2);
+      chrome.storage.sync.set({'wallpaperData': _data.wallpaperData});
       wallpaperResponse = _data.wallpaperData;
       quoteText = _data.quoteData;
       applyData();
-    }else {
-      chrome.storage.sync.set({'timeStamp': new Date().getTime()});
-      requestImage()  
+      assertData();
+    }else if(_data.timeStamp != undefined && _data.wallpaperData.length==1){
+      requestImage(1)
+    }else if(_data.timeStamp == undefined){
+      requestImage(2)
+    }else{
+      $('#preloader').show();
+      wallpaperResponse = _data.wallpaperData;
+      quoteText = _data.quoteData;
+      applyData();
     }
+      chrome.storage.sync.set({'timeStamp': new Date().getTime()});
   });
-});
+}
 
-function requestImage(){
+function requestImage(_responseCount){
   $.ajax({
     url: "https://api.unsplash.com/photos/random",
     type: "get",
@@ -31,18 +46,25 @@ function requestImage(){
       query: imageCategory[randomNumber],
       w: 1366,
       h: 637,
-      count: 1
+      count: _responseCount
     },
     success: function(response) {
-      chrome.storage.sync.set({'wallpaperData': response[0]});
-      wallpaperResponse = response[0];
-      requestQuote();
+      if(_responseCount == 2){
+        chrome.storage.sync.set({'wallpaperData': response});
+        wallpaperResponse = response;
+        requestQuote(_responseCount);
+      }else{
+        chrome.storage.sync.get(function(_data){
+          _data.wallpaperData.push(response[0]);
+          chrome.storage.sync.set({'wallpaperData': _data.wallpaperData});
+        });
+      }
     },
     error: function(xhr) {}
   });
 }
 
-function requestQuote(){
+function requestQuote(_responseCount){
   $.ajax({
     url: "https://andruxnet-random-famous-quotes.p.mashape.com/",
     type: "get",
@@ -53,11 +75,18 @@ function requestQuote(){
     },
     data: { 
       cat: quoteCategory[randomNumber],
-      count: 1
+      count: _responseCount
     },
     success: function(response) {
-      chrome.storage.sync.set({'quoteData': JSON.parse(response)});
-      quoteText = JSON.parse(response);
+      //if(_responseCount == 2){
+        chrome.storage.sync.set({'quoteData': JSON.parse(response)});
+        quoteText = JSON.parse(response);
+      /* }else{
+        chrome.storage.sync.get(function(_data){
+          chrome.storage.sync.set({'wallpaperData': _data.wallpaperData.push(response[0])});
+        });
+      } */
+      $('#preloader').show();
       applyData();
     },
     error: function(xhr) {}
@@ -65,8 +94,8 @@ function requestQuote(){
 }
 
 function applyData(){
-  $('body').css('background', 'url('+wallpaperResponse.urls.custom+')');
-  $('#photographerInfo').attr('href','https://unsplash.com/@'+wallpaperResponse.user.username+'?utm_source=my_new_tab&utm_medium=referral').text(wallpaperResponse.user.name);
+  $('body').css('background', 'url('+wallpaperResponse[0].urls.custom+')');
+  $('#photographerInfo').attr('href','https://unsplash.com/@'+wallpaperResponse[0].user.username+'?utm_source=my_new_tab&utm_medium=referral').text(wallpaperResponse[0].user.name);
   $('#quote').text(quoteText.quote);
   $('#author').text('- '+quoteText.author);
   $('#preloader').hide();
