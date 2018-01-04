@@ -102,6 +102,20 @@ function applyData(){
   $('#content').show();
 }
 
+chrome.runtime.onMessage.addListener(function(data){
+  if(data.myNewTab){
+    $('#preloader').show();
+    $('#content').hide();
+    chrome.storage.sync.get(function(_data){
+      chrome.storage.sync.set({'wallpaperData': [_data.wallpaperData[1]], 'timeStamp': new Date().getTime()});
+      wallpaperResponse = [_data.wallpaperData[1]];
+      quoteText = _data.quoteData;
+      applyData();
+      assertData();
+    });
+  }
+});
+
 $(function(){
   
     // Cache some selectors
