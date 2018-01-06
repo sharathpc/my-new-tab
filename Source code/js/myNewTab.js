@@ -44,8 +44,8 @@ function requestImage(_responseCount){
       client_id: 'f8d843241ec749d581a9de34a8330a16c8fc02e5eb8bb7176d8179a3e78f0484',
       orientation: 'landscape',
       query: imageCategory[randomNumber],
-      w: 1366,
-      h: 637,
+      w: $(window).width(),
+      h: $(window).height(),
       count: _responseCount
     },
     success: function(response) {
