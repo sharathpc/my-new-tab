@@ -1,8 +1,13 @@
 body {
   min-width: 100px;
   text-align: center;
+  min-width: 140px;
 }
-body .resetIcon {
+body h5 {
+  color: #999;
+  margin-bottom: 5px;
+}
+body #newWallpaper_content .resetIcon {
   cursor: pointer;
   margin: auto;
   width: 25px;
@@ -13,7 +18,106 @@ body .resetIcon {
   -webkit-transition: all .5s;
   background-position: -37px -36px;
 }
-body #comingSoon {
-  font-weight: bold;
-  margin-top: 10px;
+body #newWallpaper_content .rotateToggleFull {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+}
+body #freezeWallpaper_content {
+  margin: 0px 25px;
+}
+body #freezeWallpaper_content .tgl {
+  display: none;
+}
+body #freezeWallpaper_content .tgl,
+body #freezeWallpaper_content .tgl:after,
+body #freezeWallpaper_content .tgl:before,
+body #freezeWallpaper_content .tgl *,
+body #freezeWallpaper_content .tgl *:after,
+body #freezeWallpaper_content .tgl *:before,
+body #freezeWallpaper_content .tgl + .tgl-btn {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body #freezeWallpaper_content .tgl::-moz-selection,
+body #freezeWallpaper_content .tgl:after::-moz-selection,
+body #freezeWallpaper_content .tgl:before::-moz-selection,
+body #freezeWallpaper_content .tgl *::-moz-selection,
+body #freezeWallpaper_content .tgl *:after::-moz-selection,
+body #freezeWallpaper_content .tgl *:before::-moz-selection,
+body #freezeWallpaper_content .tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+body #freezeWallpaper_content .tgl::selection,
+body #freezeWallpaper_content .tgl:after::selection,
+body #freezeWallpaper_content .tgl:before::selection,
+body #freezeWallpaper_content .tgl *::selection,
+body #freezeWallpaper_content .tgl *:after::selection,
+body #freezeWallpaper_content .tgl *:before::selection,
+body #freezeWallpaper_content .tgl + .tgl-btn::selection {
+  background: none;
+}
+body #freezeWallpaper_content .tgl + .tgl-btn {
+  outline: 0;
+  display: inline-block;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+body #freezeWallpaper_content .tgl + .tgl-btn:after,
+body #freezeWallpaper_content .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+body #freezeWallpaper_content .tgl + .tgl-btn:after {
+  left: 0;
+}
+body #freezeWallpaper_content .tgl + .tgl-btn:before {
+  display: none;
+}
+body #freezeWallpaper_content .tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
+body #freezeWallpaper_content .tgl-ios + .tgl-btn {
+  background: #fbfbfb;
+  border-radius: 2em;
+  padding: 2px;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+  border: 1px solid #e8eae9;
+}
+body #freezeWallpaper_content .tgl-ios + .tgl-btn:after {
+  border-radius: 2em;
+  background: #fbfbfb;
+  -webkit-transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+  transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+}
+body #freezeWallpaper_content .tgl-ios + .tgl-btn:hover:after {
+  will-change: padding;
+}
+body #freezeWallpaper_content .tgl-ios + .tgl-btn:active {
+  -webkit-box-shadow: inset 0 0 0 2em #e8eae9;
+  box-shadow: inset 0 0 0 2em #e8eae9;
+}
+body #freezeWallpaper_content .tgl-ios + .tgl-btn:active:after {
+  padding-right: .8em;
+}
+body #freezeWallpaper_content .tgl-ios:checked + .tgl-btn {
+  background: #86d993;
+}
+body #freezeWallpaper_content .tgl-ios:checked + .tgl-btn:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+body #freezeWallpaper_content .tgl-ios:checked + .tgl-btn:active:after {
+  margin-left: -0.8em;
 }

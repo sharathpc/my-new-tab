@@ -2,9 +2,10 @@
   "description": "Modify's 'New Tab' page and adds utilities.",
   "manifest_version": 2,
   "name": "My New Tab",
-  "version": "2.0.1",
+  "version": "2.0.5",
   "homepage_url": "http://www.codeclark.tk",
   "browser_action": {
+    "matches": ["*://*/_/chrome/newtab*"],
     "default_icon": "img/icon16.png",
     "default_popup": "popup.html",
     "default_title": "My New Tab"

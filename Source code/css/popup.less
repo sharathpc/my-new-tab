@@ -1,19 +1,109 @@
 body{
     min-width: 100px;
     text-align: center;
-    .resetIcon{
-        cursor: pointer;
-        margin: auto;
-        width: 25px;
-        height: 25px;
-        background-repeat: no-repeat;
-        background-image: url(../img/icons_sprite.png);
-        transition: all .5s;
-        -webkit-transition: all .5s;
-        background-position: -37px -36px;
+    min-width: 140px;
+    h5 {
+        color: #999;
+        margin-bottom: 5px;
     }
-    #comingSoon{
-        font-weight: bold;
-        margin-top: 10px;
+    #newWallpaper_content{
+        .resetIcon{
+            cursor: pointer;
+            margin: auto;
+            width: 25px;
+            height: 25px;
+            background-repeat: no-repeat;
+            background-image: url(../img/icons_sprite.png);
+            transition: all .5s;
+            -webkit-transition: all .5s;
+            background-position: -37px -36px;
+        }
+        .rotateToggleFull {
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+        }  
+    }
+    
+    #freezeWallpaper_content{
+        margin: 0px 25px;
+          
+        .tgl {
+            display: none;
+        }
+        .tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+            background: none;
+        }
+        .tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+            background: none;
+        }
+        .tgl + .tgl-btn {
+            outline: 0;
+            display: inline-block;
+            width: 4em;
+            height: 2em;
+            position: relative;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+            position: relative;
+            display: block;
+            content: "";
+            width: 50%;
+            height: 100%;
+        }
+        .tgl + .tgl-btn:after {
+            left: 0;
+        }
+        .tgl + .tgl-btn:before {
+            display: none;
+        }
+        .tgl:checked + .tgl-btn:after {
+            left: 50%;
+        }
+        
+        .tgl-ios + .tgl-btn {
+            background: #fbfbfb;
+            border-radius: 2em;
+            padding: 2px;
+            -webkit-transition: all .4s ease;
+            transition: all .4s ease;
+            border: 1px solid #e8eae9;
+        }
+        .tgl-ios + .tgl-btn:after {
+            border-radius: 2em;
+            background: #fbfbfb;
+            -webkit-transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+            transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+            -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+        }
+        .tgl-ios + .tgl-btn:hover:after {
+            will-change: padding;
+        }
+        .tgl-ios + .tgl-btn:active {
+            -webkit-box-shadow: inset 0 0 0 2em #e8eae9;
+            box-shadow: inset 0 0 0 2em #e8eae9;
+        }
+        .tgl-ios + .tgl-btn:active:after {
+            padding-right: .8em;
+        }
+        .tgl-ios:checked + .tgl-btn {
+            background: #86d993;
+        }
+        .tgl-ios:checked + .tgl-btn:active {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .tgl-ios:checked + .tgl-btn:active:after {
+            margin-left: -.8em;
+        }
     }
 }

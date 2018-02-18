@@ -13,7 +13,11 @@ $(document).ready(function(){
 function assertData(){
   randomNumber = Math.floor(Math.random() * imageCategory.length+1);
   chrome.storage.sync.get(function(_data){
-    if(_data.timeStamp != undefined && _data.wallpaperData.length>1 && (Math.round((((new Date()-new Date(_data.timeStamp)) % 86400000) % 3600000) / 60000)>5)){
+    if(_data.timeStamp != undefined 
+        && _data.wallpaperData.length>1 
+        && (Math.round((((new Date() - new Date(_data.timeStamp)) % 86400000) % 3600000) / 60000)>5) 
+        && (_data.freezeWallpaper == undefined
+        || _data.freezeWallpaper != "true")){
       $('#preloader').show();
       chrome.storage.sync.set({'wallpaperData': [_data.wallpaperData[1]]});
       wallpaperResponse = [_data.wallpaperData[1]];
@@ -78,8 +82,8 @@ function requestQuote(_responseCount){
       count: _responseCount
     },
     success: function(response) {
-      chrome.storage.sync.set({'quoteData': JSON.parse(response)});
-      quoteText = JSON.parse(response);
+      chrome.storage.sync.set({'quoteData': response});
+      quoteText = response;
       if(_responseCount == 2){
         $('#preloader').show();
         applyData();
@@ -112,6 +116,12 @@ chrome.runtime.onMessage.addListener(function(data){
       quoteText = _data.quoteData;
       applyData();
       assertData();
+    });
+  }else if(data.freezeWallpaper){
+    chrome.storage.sync.get(function(_data){
+      chrome.storage.sync.set({
+        "freezeWallpaper": data.freezeWallpaper,
+      });
     });
   }
 });
