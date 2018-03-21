@@ -45,7 +45,9 @@ $(document).ready(function(){
 function assertData(){
   randomNumber = Math.floor(Math.random() * imageCategory.length+1);
   chrome.storage.sync.get(function(_data){
-    if(_data.timeStamp != undefined 
+
+    if(_data.timeStamp != undefined
+        && _data.wallpaperData != undefined
         && _data.wallpaperData.length>1 
         && (Math.round((((new Date() - new Date(_data.timeStamp)) % 86400000) % 3600000) / 60000)>5) 
         && (_data.freezeWallpaper == undefined
@@ -56,10 +58,12 @@ function assertData(){
       quoteText = _data.quoteData;
       applyData();
       assertData();
-    }else if(_data.timeStamp != undefined && _data.wallpaperData.length==1){
+    }else if(_data.timeStamp != undefined
+        && _data.wallpaperData != undefined 
+        && _data.wallpaperData.length==1){
       requestImage(1)
       chrome.storage.sync.set({'timeStamp': new Date().getTime()});
-    }else if(_data.timeStamp == undefined){
+    }else if(_data.timeStamp == undefined || _data.wallpaperData == undefined){
       requestImage(2)
       chrome.storage.sync.set({'timeStamp': new Date().getTime()});
     }else{
@@ -97,7 +101,9 @@ function requestImage(_responseCount){
       }
       requestQuote(_responseCount);
     },
-    error: function(xhr) {}
+    error: function(xhr) {
+      chrome.storage.sync.remove('wallpaperData');
+    }
   });
 }
 
@@ -138,20 +144,24 @@ function applyData(){
   $('#quote').text(quoteText.quote);
   $('#author').text('- '+quoteText.author);
   $('#preloader').hide();
-  $('#content').show();
+  $('#options_container, #content').show();
 }
 
 /* New Wallpaper event function */
 function bindNewWallpaperEvent(){
   $('#newWallpaper').bind('click',function(){
-    $(this).addClass("rotateToggleFull");
+    $("#newWallpaper").addClass("rotateToggleFull");
     $('#preloader').show();
-    $('#content').hide();
+    $('#options_container, #content').hide();
     chrome.storage.sync.get(function(_data){
-      chrome.storage.sync.set({'wallpaperData': [_data.wallpaperData[1]], 'timeStamp': new Date().getTime()});
-      wallpaperResponse = [_data.wallpaperData[1]];
-      quoteText = _data.quoteData;
-      applyData();
+      if(_data.wallpaperData !== undefined){
+        chrome.storage.sync.set({'wallpaperData': [_data.wallpaperData[1]], 'timeStamp': new Date().getTime()});
+        wallpaperResponse = [_data.wallpaperData[1]];
+        quoteText = _data.quoteData;
+        applyData();
+      }else{
+        chrome.storage.sync.remove('timeStamp');
+      }
       assertData();
     });
     setTimeout(function(){
