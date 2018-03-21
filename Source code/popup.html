@@ -4,18 +4,20 @@
         <meta charset="utf-8">
         <title>My New Tab</title>
         <link rel="stylesheet" href="css/popup.css">
-        <!-- <script src="libraries/jquery.min.js"></script> -->
+        <script src="libraries/jquery.min.js"></script>
     </head>
     <body>
-        <div id="newWallpaper_content">
-            <h5>New Wallpaper</h4>
-            <div id="newWallpaper" class="resetIcon" title="New Wallpaper"></div>
-        </div>
-        <div id="freezeWallpaper_content">
-            <h5>Freeze Wallpaper</h4>
-            <input id="freezeWallpaper" class="tgl tgl-ios" type="checkbox"/>
-            <label class="tgl-btn" for="freezeWallpaper"></label>
-        </div>
+        <section id="addShortcut_content">
+            <div class="inputGroup">      
+                <input type="text" id="shortcutName" spellcheck="false" autocomplete="off" required="">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Name</label>
+            </div>
+        </section>
+        <div id="addShortcut" class="icon" title="Add Shortcut"></div>
+        
+        <div id="removeShortcut" class="icon" title="Remove Shortcut"></div>
     </body>
     <script src="js/popup.js"></script>
 </html>

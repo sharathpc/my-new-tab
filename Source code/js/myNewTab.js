@@ -7,9 +7,41 @@ var randomNumber = 0
 
 $(document).ready(function(){
   //chrome.storage.sync.clear();
+
+  /* Set Toggle state from stoage */
+  chrome.storage.sync.get("freezeWallpaper", function(_data){
+    if(_data.freezeWallpaper){
+      $('#freezeWallpaper').prop("checked", true);
+    }
+  });
+
+  /* Create Shortcuts from storage */
+  chrome.storage.sync.get("shortcutsList", function(_data){
+    if(_data.shortcutsList){
+      var _CONTENT = "";
+      $(_data.shortcutsList).each(function(index, item){
+        _CONTENT += '<li>\
+                        <a href="'+ item.url +'" title="'+ item.title +'" data-index="'+ index +'">\
+                            <img src="'+ item.icon +'"/>\
+                        </a>\
+                    </li>';
+      });
+      $("#scrollContainer>ul").append(_CONTENT);
+
+      /* Run function to bind Context menu events */
+      contextMenuEvents();
+    }
+  });
+
+  /* Run functions to bind New/Freeze Wallpaper events */
+  bindFreezeWallpaperEvent();
+  bindNewWallpaperEvent();
+
+  /* Initiate Data Assertion/Validation */
   assertData();
 });
 
+/* Assert/Validate information to request new data */
 function assertData(){
   randomNumber = Math.floor(Math.random() * imageCategory.length+1);
   chrome.storage.sync.get(function(_data){
@@ -39,6 +71,7 @@ function assertData(){
   });
 }
 
+/* API Call to Unsplash for Wallpapers data */
 function requestImage(_responseCount){
   $.ajax({
     url: "https://api.unsplash.com/photos/random",
@@ -68,6 +101,7 @@ function requestImage(_responseCount){
   });
 }
 
+/* API Call to Mashape for Quotes data */
 function requestQuote(_responseCount){
   $.ajax({
     url: "https://andruxnet-random-famous-quotes.p.mashape.com/",
@@ -97,6 +131,7 @@ function requestQuote(_responseCount){
   });
 }
 
+/* Update Wallpaper/Quotes data to UI */
 function applyData(){
   $('body').css('background', 'url('+wallpaperResponse[0].urls.custom+')');
   $('#photographerInfo').attr('href','https://unsplash.com/@'+wallpaperResponse[0].user.username+'?utm_source=my_new_tab&utm_medium=referral').text(wallpaperResponse[0].user.name);
@@ -106,8 +141,10 @@ function applyData(){
   $('#content').show();
 }
 
-chrome.runtime.onMessage.addListener(function(data){
-  if(data.myNewTab){
+/* New Wallpaper event function */
+function bindNewWallpaperEvent(){
+  $('#newWallpaper').bind('click',function(){
+    $(this).addClass("rotateToggleFull");
     $('#preloader').show();
     $('#content').hide();
     chrome.storage.sync.get(function(_data){
@@ -117,17 +154,64 @@ chrome.runtime.onMessage.addListener(function(data){
       applyData();
       assertData();
     });
-  }else if(data.freezeWallpaper){
-    chrome.storage.sync.get(function(_data){
-      chrome.storage.sync.set({
-        "freezeWallpaper": data.freezeWallpaper,
-      });
-    });
-  }
-});
+    setTimeout(function(){
+      $("#newWallpaper").removeClass("rotateToggleFull");
+    }, 500);
+  });
+}
 
-$(function(){
+/* Freeze Wallpaper event function */
+function bindFreezeWallpaperEvent(){
+  $('#freezeWallpaper').bind('click',function(){
+    chrome.storage.sync.set({
+      "freezeWallpaper": $("#freezeWallpaper").prop("checked"),
+    });
+  });
+}
+
+/* Context menu events function */
+var shortcutItem;
+function contextMenuEvents(){
+  $("#scrollContainer li").bind("contextmenu", function(event) {
+      event.preventDefault();
+      $(".custom-context-menu").finish().toggle(100).css({
+          top: event.pageY + "px",
+          left: (event.pageX-130) + "px"
+      });
+      shortcutItem = $(this);
+  });
   
+  /* If the document is clicked somewhere */
+  $(document).bind("mousedown", function(e) {
+      if (!$(e.target).parents(".custom-context-menu").length > 0) {
+          $(".custom-context-menu").hide(100);
+      }
+  });
+  
+  /* If the menu element is clicked */
+  $(".custom-context-menu li").click(function(){
+    switch($(this).attr("data-action")) {
+      case "openTab":
+        window.open(shortcutItem.children('a').attr('href'), '_blank');
+        break;
+      case "openWindow":
+        chrome.windows.create({url: shortcutItem.children('a').attr('href')});
+        break;
+      case "removeShortcut":
+        chrome.storage.sync.get(function(_data){
+          if(_data.shortcutsList){
+            chrome.storage.sync.set({'shortcutsList': _data.shortcutsList.filter((item) => item.url !== shortcutItem.children('a').attr('href'))});
+          }
+        }); 
+        shortcutItem.remove(); 
+        break;
+    }
+      $(".custom-context-menu").hide(100);
+  });
+}
+
+/* Digital Clock self invoking function */
+$(function(){
     // Cache some selectors
   
     var clock = $('#clock'),

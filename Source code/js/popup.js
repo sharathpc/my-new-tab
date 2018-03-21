@@ -1,33 +1,66 @@
-document.addEventListener('DOMContentLoaded', function(){
 
+$(document).ready(function(){
+  var shortcutData = {};
+
+  /* Get current active tab URL/Favicon/Title */
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    shortcutData = {
+      url: tabs[0].url,
+      icon: tabs[0].favIconUrl,
+      title: tabs[0].title
+    }; 
+  });
+
+  /* Check the URL instance in storage and update the Add/Delete icon */
   chrome.storage.sync.get(function(_data){
-    if(_data.freezeWallpaper != undefined && _data.freezeWallpaper == "true"){
-      document.getElementById('freezeWallpaper').checked = true;
+    if(_data.shortcutsList){
+      $(_data.shortcutsList).each(function(index, item){
+        if(item.url == shortcutData.url){
+          $("#addShortcut, #addShortcut_content").hide();
+          $("#removeShortcut").show();
+          return false;
+        }
+      });
     }
   });
 
-  /* Change Wallpaper click event */
-  document.getElementById('newWallpaper').addEventListener('click',function(){
-    var newWallpaper = this;
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {myNewTab: "reset"}, function(){
-        newWallpaper.classList.add("rotateToggleFull");
-        setTimeout(function(){
-          newWallpaper.classList.remove("rotateToggleFull");
-        }, 500);
-      });
-    });
+  /* Add Shortcut click event */
+  $('#addShortcut').bind('click',function(){
+    addShortcut(shortcutData);
   });
 
-  /* Freeze Wallpaper click event */
-  document.getElementById('freezeWallpaper').addEventListener('change',function(){
-    var freeze = this;
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      if(freeze.checked){
-        chrome.tabs.sendMessage(tabs[0].id, {freezeWallpaper: "true"});
-      }else{
-        chrome.tabs.sendMessage(tabs[0].id, {freezeWallpaper: "false"});
-      }
-    });
+  /* Add Shortcut click event */
+  $('#removeShortcut').bind('click',function(){
+    removeShortcut(shortcutData);
   });
-}, false);
+
+});
+
+/* Add Shortcut function */
+function addShortcut(_shortcutData){
+  chrome.storage.sync.get(function(_data){
+    if($("#shortcutName").val() != ""){
+      _shortcutData.title = $("#shortcutName").val();
+    }
+
+    if(_data.shortcutsList){
+      _data.shortcutsList.push(_shortcutData)
+      chrome.storage.sync.set({'shortcutsList': _data.shortcutsList});
+    }else{
+      chrome.storage.sync.set({'shortcutsList': [_shortcutData]});
+    }
+    $("#addShortcut, #addShortcut_content").hide();
+    $("#removeShortcut").show();
+  });
+}
+
+/* Remove Shortcut function */
+function removeShortcut(_shortcutData){
+  chrome.storage.sync.get(function(_data){
+    if(_data.shortcutsList){
+      chrome.storage.sync.set({'shortcutsList': _data.shortcutsList.filter((item) => item.url !== _shortcutData.url)});
+      $("#addShortcut, #addShortcut_content").show();
+      $("#removeShortcut").hide();
+    }
+  });
+}

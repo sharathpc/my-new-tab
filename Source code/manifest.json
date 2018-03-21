@@ -2,10 +2,10 @@
   "description": "Modify's 'New Tab' page and adds utilities.",
   "manifest_version": 2,
   "name": "My New Tab",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "homepage_url": "http://www.codeclark.tk",
   "browser_action": {
-    "matches": ["*://*/_/chrome/newtab*"],
+    "matches": ["https://*"],
     "default_icon": "img/icon16.png",
     "default_popup": "popup.html",
     "default_title": "My New Tab"
@@ -21,6 +21,11 @@
   "permissions": [
     "https://api.unsplash.com/",
     "https://andruxnet-random-famous-quotes.p.mashape.com/",
+    "tabs",
     "storage"
-  ]
+  ],
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  }
 }
