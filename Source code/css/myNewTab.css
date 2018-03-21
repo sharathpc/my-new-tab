@@ -71,6 +71,7 @@ body {
 /* CSS Preloader styles ends */
 /* Options styles starts */
 #options_container {
+  display: none;
   width: 35px;
   height: 28px;
   border-radius: 0px 15px 15px 0px;
