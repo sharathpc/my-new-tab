@@ -77,32 +77,27 @@ $(document).ready(function(){
 function assertData(){
   randomNumber = Math.floor(Math.random() * imageCategory.length);
   chrome.storage.sync.get(function(_data){
-
-    if(_data.timeStamp != undefined
-        && _data.wallpaperData != undefined
-        && _data.wallpaperData.length>1 
-        && (Math.round((((new Date() - new Date(_data.timeStamp)) % 86400000) % 3600000) / 60000)>5) 
-        && (_data.freezeWallpaper == undefined
-        || _data.freezeWallpaper != true)){
-      $('#preloader').show();
-      chrome.storage.sync.set({'wallpaperData': [_data.wallpaperData[1]]});
-      wallpaperResponse = [_data.wallpaperData[1]];
-      chrome.storage.sync.set({'quoteData': [_data.quoteData[1]]});
-      quoteText = [_data.quoteData[1]];
-      applyData(true);
-      assertData();
-    }else if(_data.timeStamp != undefined
-        && _data.wallpaperData != undefined 
-        && _data.wallpaperData.length==1){
-      requestImage(1);
-      chrome.storage.sync.set({'timeStamp': new Date().getTime()});
-    }else if(_data.timeStamp == undefined || _data.wallpaperData == undefined){
-      $('#preloader').show();
+    $('#preloader').show();
+    if(_data.timeStamp == undefined && _data.wallpaperData == undefined){
       requestImage(2);
-      chrome.storage.sync.set({'timeStamp': new Date().getTime()});
     }else{
-      $('#preloader').show();
-      applyData(false);
+      if(_data.wallpaperData.length == 2 
+        && (Math.round((((new Date() - new Date(_data.timeStamp)) % 86400000) % 3600000) / 60000)>5) 
+        && (_data.freezeWallpaper == undefined|| !_data.freezeWallpaper)){
+        chrome.storage.sync.set({'wallpaperData': [_data.wallpaperData[1]]});
+        wallpaperResponse = [_data.wallpaperData[1]];
+        chrome.storage.sync.set({'quoteData': [_data.quoteData[1]]});
+        quoteText = [_data.quoteData[1]];
+        applyData(true);
+        assertData();
+      }else if(_data.wallpaperData.length == 1){
+        requestImage(1);
+        $('#preloader').hide();
+      }else{
+        wallpaperResponse = _data.wallpaperData;
+        quoteText = _data.quoteData;
+        applyData(true);
+      }  
     }
   });
 }
@@ -123,12 +118,12 @@ function requestImage(_responseCount){
     },
     success: function(response) {
       if(_responseCount == 2){
-        chrome.storage.sync.set({'wallpaperData': response});
+        chrome.storage.sync.set({'wallpaperData': response, 'timeStamp': new Date().getTime()});
         wallpaperResponse = response;
       }else{
         chrome.storage.sync.get(function(_data){
           _data.wallpaperData.push(response[0]);
-          chrome.storage.sync.set({'wallpaperData': _data.wallpaperData});
+          chrome.storage.sync.set({'wallpaperData': _data.wallpaperData, 'timeStamp': new Date().getTime()});
         });
       }
       requestQuote(_responseCount);
