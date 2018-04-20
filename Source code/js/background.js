@@ -9,7 +9,7 @@ chrome.tabs.onHighlighted.addListener(function (tabs){
     });
 });
 
-/* Clear Local storage  */
+/* Clear's storage whenever extension gets updated */
 chrome.runtime.onInstalled.addListener(function(details){
     /* if(details.reason == "install"){}
     else  */if(details.reason == "update"){
