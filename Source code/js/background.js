@@ -8,3 +8,11 @@ chrome.tabs.onHighlighted.addListener(function (tabs){
         }
     });
 });
+
+/* Clear Local storage  */
+chrome.runtime.onInstalled.addListener(function(details){
+    /* if(details.reason == "install"){}
+    else  */if(details.reason == "update"){
+        chrome.storage.sync.clear();
+    }
+});
