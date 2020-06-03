@@ -69,6 +69,145 @@ body {
   }
 }
 /* CSS Preloader styles ends */
+/* Options styles starts */
+#options_container {
+  display: none;
+  width: 35px;
+  height: 28px;
+  border-radius: 0px 15px 15px 0px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all .2s;
+  -webkit-transition: all .2s;
+  position: absolute;
+  top: 10px;
+  left: 0px;
+}
+#options_container:hover {
+  width: 80px;
+}
+#options_container:hover .tgl-btn {
+  width: 4em !important;
+  border-radius: 1px !important;
+  padding: 2px !important;
+  border-radius: 2em !important;
+}
+#options_container .resetIcon {
+  float: right;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  background-repeat: no-repeat;
+  background-image: url(../img/icons_sprite.png);
+  transition: all .5s;
+  -webkit-transition: all .5s;
+  background-position: -37px -36px;
+  margin: 1px;
+}
+#options_container .rotateToggleFull {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+}
+#options_container #freezeWallpaper_content {
+  display: inline-block;
+}
+#options_container #freezeWallpaper_content .tgl {
+  display: none;
+}
+#options_container #freezeWallpaper_content .tgl,
+#options_container #freezeWallpaper_content .tgl:after,
+#options_container #freezeWallpaper_content .tgl:before,
+#options_container #freezeWallpaper_content .tgl *,
+#options_container #freezeWallpaper_content .tgl *:after,
+#options_container #freezeWallpaper_content .tgl *:before,
+#options_container #freezeWallpaper_content .tgl + .tgl-btn {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#options_container #freezeWallpaper_content .tgl::-moz-selection,
+#options_container #freezeWallpaper_content .tgl:after::-moz-selection,
+#options_container #freezeWallpaper_content .tgl:before::-moz-selection,
+#options_container #freezeWallpaper_content .tgl *::-moz-selection,
+#options_container #freezeWallpaper_content .tgl *:after::-moz-selection,
+#options_container #freezeWallpaper_content .tgl *:before::-moz-selection,
+#options_container #freezeWallpaper_content .tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+#options_container #freezeWallpaper_content .tgl::selection,
+#options_container #freezeWallpaper_content .tgl:after::selection,
+#options_container #freezeWallpaper_content .tgl:before::selection,
+#options_container #freezeWallpaper_content .tgl *::selection,
+#options_container #freezeWallpaper_content .tgl *:after::selection,
+#options_container #freezeWallpaper_content .tgl *:before::selection,
+#options_container #freezeWallpaper_content .tgl + .tgl-btn::selection {
+  background: none;
+}
+#options_container #freezeWallpaper_content .tgl + .tgl-btn {
+  outline: 0;
+  display: inline-block;
+  width: 0em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 2px;
+}
+#options_container #freezeWallpaper_content .tgl + .tgl-btn:after,
+#options_container #freezeWallpaper_content .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+#options_container #freezeWallpaper_content .tgl + .tgl-btn:after {
+  left: 0;
+}
+#options_container #freezeWallpaper_content .tgl + .tgl-btn:before {
+  display: none;
+}
+#options_container #freezeWallpaper_content .tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
+#options_container #freezeWallpaper_content .tgl-ios + .tgl-btn {
+  background: #fbfbfb;
+  border-radius: 0em;
+  padding: 0px;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  border: 0px solid #e8eae9;
+}
+#options_container #freezeWallpaper_content .tgl-ios + .tgl-btn:after {
+  border-radius: 2em;
+  background: #fbfbfb;
+  -webkit-transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+  transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+}
+#options_container #freezeWallpaper_content .tgl-ios + .tgl-btn:hover:after {
+  will-change: padding;
+}
+#options_container #freezeWallpaper_content .tgl-ios + .tgl-btn:active {
+  -webkit-box-shadow: inset 0 0 0 2em #e8eae9;
+  box-shadow: inset 0 0 0 2em #e8eae9;
+}
+#options_container #freezeWallpaper_content .tgl-ios + .tgl-btn:active:after {
+  padding-right: .8em;
+}
+#options_container #freezeWallpaper_content .tgl-ios:checked + .tgl-btn {
+  background: #86d993;
+}
+#options_container #freezeWallpaper_content .tgl-ios:checked + .tgl-btn:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#options_container #freezeWallpaper_content .tgl-ios:checked + .tgl-btn:active:after {
+  margin-left: -0.8em;
+}
+/* Options styles end */
 #content {
   display: none;
   /* Bookmark styles starts */
@@ -77,6 +216,7 @@ body {
   /* Footer Quote styles ends */
   /* Wallpaper credits styles starts */
   /* Wallpaper credits styles ends */
+  /* Digital Clock styles starts */
 }
 #content #bookmarks {
   position: absolute;
@@ -86,26 +226,30 @@ body {
 #content #bookmarks a {
   display: inline-block;
 }
-#content #bookmarks a i {
-  width: 25px;
-  height: 25px;
-  background: url("/img/logos_sprite.png");
-  background-repeat: no-repeat;
+#content #bookmarks a i,
+#content #bookmarks a img {
   display: inline-block;
   -webkit-transition: all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   outline: none;
 }
-#content #bookmarks a i:hover {
+#content #bookmarks a i:hover,
+#content #bookmarks a img:hover {
   transform: scale(1.5);
+}
+#content #bookmarks a img {
+  width: 25px;
+  height: 25px;
 }
 #content #bookmarks #accounts_icon {
   width: 40px;
   height: 40px;
+  background: url("/img/logos_sprite.png");
+  background-repeat: no-repeat;
   background-color: #ffffff;
   border-radius: 50%;
-  background-position: -8px -8px;
-  background-size: 100px;
+  background-position: 5px 5px;
+  background-size: 30px;
   margin: 5px;
 }
 #content #bookmarks #scrollContainer ul {
@@ -144,39 +288,6 @@ body {
 #content #bookmarks #scrollContainer ul li i {
   background-size: 70px;
 }
-#content #bookmarks #scrollContainer ul li #drive_icon {
-  background-position: -7px -38px;
-}
-#content #bookmarks #scrollContainer ul li #jira_icon {
-  background-position: -38px -100px;
-}
-#content #bookmarks #scrollContainer ul li #bitbucket_icon {
-  background-position: -38px -130px;
-}
-#content #bookmarks #scrollContainer ul li #docs_icon {
-  background-position: -38px -6px;
-}
-#content #bookmarks #scrollContainer ul li #sheets_icon {
-  background-position: -38px -38px;
-}
-#content #bookmarks #scrollContainer ul li #slides_icon {
-  background-position: -38px -68px;
-}
-#content #bookmarks #scrollContainer ul li #calendar_icon {
-  background-position: -7px -130px;
-}
-#content #bookmarks #scrollContainer ul li #hangouts_icon {
-  background-position: -7px -68px;
-}
-#content #bookmarks #scrollContainer ul li #photos_icon {
-  background-position: -7px -100px;
-}
-#content #bookmarks #scrollContainer ul li #JSON_icon {
-  background-position: -7px -162px;
-}
-#content #bookmarks #scrollContainer ul li #tinyPNG_icon {
-  background-position: -38px -162px;
-}
 #content #quoteContainer {
   position: fixed;
   bottom: 0;
@@ -185,21 +296,46 @@ body {
   text-align: center;
   color: #ffffff;
   width: 100%;
+  height: 45px;
   font-size: 1.2em;
 }
 #content #quoteContainer > div {
-  margin: 0px 200px;
+  margin: 0px 205px;
+  position: relative;
+  height: 48px;
 }
 #content #quoteContainer > div #quote {
   font-weight: bold;
 }
+#content #quoteContainer > div #quote p {
+  margin: 0px;
+  padding: 0px;
+}
+#content #quoteContainer > div #author {
+  position: absolute;
+  bottom: -4px;
+  right: -30px;
+  font-size: 12px;
+  background-color: #e0e0e0;
+  color: #252525;
+  padding: 0px 3px;
+  border-radius: 2px;
+}
 #content #unsplashContainer {
   position: fixed;
-  bottom: 20px;
+  bottom: 12px;
   right: 10px;
-  color: #5f5f5f;
+  color: #999999;
+  width: 130px;
+  text-align: center;
 }
-#content #unsplashContainer a {
+#content #unsplashContainer span {
+  display: block;
+}
+#content #unsplashContainer div {
+  margin-bottom: 3px;
+}
+#content #unsplashContainer div a {
   color: #b3ecff;
 }
 #content #clock {
@@ -478,3 +614,30 @@ body {
   font-size: 14px;
   font-weight: bold;
 }
+/* Digital Clock styles ends */
+/* Custom Context menu styles starts */
+.custom-context-menu {
+  display: none;
+  z-index: 1000;
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+  font-family: sans-serif;
+  background: #fff;
+  color: #333;
+  border-radius: 3px;
+  padding: 0;
+}
+.custom-context-menu li {
+  padding: 6px 10px;
+  cursor: pointer;
+  list-style-type: none;
+  transition: all .2s ease;
+  user-select: none;
+}
+.custom-context-menu li:hover {
+  background-color: #a0a0a0;
+  color: #fff;
+}
+/* Custom Context menu styles ends */

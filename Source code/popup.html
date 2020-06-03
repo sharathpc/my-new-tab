@@ -4,11 +4,22 @@
         <meta charset="utf-8">
         <title>My New Tab</title>
         <link rel="stylesheet" href="css/popup.css">
-        <!-- <script src="libraries/jquery.min.js"></script> -->
+        <script src="libraries/jquery.min.js"></script>
     </head>
     <body>
-        <div>Coming Soon...</div>
+        <section id="addShortcut_content">
+            <div class="inputGroup">      
+                <input type="text" id="shortcutName" spellcheck="false" autocomplete="off" required="">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Name</label>
+            </div>
+        </section>
+        <div id="addShortcut" class="icon" title="Add Shortcut"></div>
+        
+        <div id="removeShortcut" class="icon" title="Remove Shortcut"></div>
     </body>
+    <script src="js/popup.js"></script>
 </html>
 
 

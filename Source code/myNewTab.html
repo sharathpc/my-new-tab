@@ -8,12 +8,25 @@
         <script src="libraries/moment.min.js"></script>
     </head>
     <body>
+        <!-- Preloader HTML -->
         <div id="preloader">
             <svg class="circular" viewBox="25 25 50 50">
                 <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>
             </svg>
         </div>
+
+        <!-- Freeze/Change Wallpaper options HTML -->
+        <div id="options_container">
+            <div id="freezeWallpaper_content">
+                <input id="freezeWallpaper" class="tgl tgl-ios" type="checkbox"/>
+                <label class="tgl-btn" for="freezeWallpaper" title="Freeze Wallpaper"></label>
+            </div>
+            <div id="newWallpaper" class="resetIcon" title="New Wallpaper"></div>
+        </div>
+
         <div id="content">
+
+            <!-- Digital Clock HTML -->
             <div id="clock" class="dark">
                 <div class="display">
                     <div class="weekdays"></div>
@@ -21,79 +34,39 @@
                     <div class="digits"></div>
                 </div>
             </div>
+
+            <!-- Shortcuts HTML -->
             <div id="bookmarks">
                 <a href="https://www.gmail.com" title="Gmail">
                     <i id="accounts_icon" class="icons"></i>
                 </a>
                 <div id="scrollContainer">
-                    <ul>
-                        <li>
-                            <a href="https://www.drive.google.com" title="Drive">
-                                <i id="drive_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://tripod.jira.com" title="Jira">
-                                <i id="jira_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://bitbucket.org" title="Bitbucket">
-                                <i id="bitbucket_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.docs.google.com" title="Docs">
-                                <i id="docs_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.sheets.google.com" title="Sheets">
-                                <i id="sheets_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.slides.google.com" title="Slides">
-                                <i id="slides_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.calendar.google.com" title="Calendar">
-                                <i id="calendar_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.hangouts.google.com" title="Hangouts">
-                                <i id="hangouts_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.photos.google.com" title="Photos">
-                                <i id="photos_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://jsoneditoronline.org" title="JSON Editor">
-                                <i id="JSON_icon" class="icons"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://tinypng.com" title="Tiny PNG">
-                                <i id="tinyPNG_icon" class="icons"></i>
-                            </a>
-                        </li>
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
+
+            <!-- Quotes HTML -->
             <div id="quoteContainer">
                 <div>
                     <div id="quote"></div>
                     <div id="author"></div>
                 </div>
             </div>
-            <div id="unsplashContainer">Photo by <a id="photographerInfo" href="">Author Name</a> / <a id="unsplashInfo" href="https://unsplash.com/?utm_source=my_new_tab&utm_medium=referral">Unsplash</a>
+
+            <!-- Unsplash Credits HTML -->
+            <div id="unsplashContainer">
+                <span>Photo by</span>
+                <div><a id="photographerInfo" href="">Author Name</a></div>
+                <div><a id="unsplashInfo" href="">Unsplash</a></div>
             </div>
         </div>
+        
+        <!-- Context menu HTML -->
+        <ul class='custom-context-menu'>
+            <li data-action="openTab">Open in New Tab</li>
+            <li data-action="openWindow">Open in New Window</li>
+            <li data-action="removeShortcut">Remove Shortcut</li>
+        </ul>
         <script src="js/myNewTab.js"></script>
     </body>
 </html>

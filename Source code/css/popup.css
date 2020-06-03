@@ -1,0 +1,126 @@
+body {
+  min-width: 100px;
+  text-align: center;
+  min-width: 140px;
+}
+body h5 {
+  color: #999;
+  margin-bottom: 5px;
+}
+body .inputGroup {
+  position: relative;
+  margin: 25px 0px;
+}
+body .inputGroup input {
+  font-size: 1.1em;
+  padding: 5px 6px;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+body .inputGroup input:focus {
+  outline: none;
+}
+body .inputGroup input:focus ~ label,
+body .inputGroup input:valid ~ label {
+  top: -16px;
+  font-size: 1.1em;
+  color: #37474f;
+}
+body .inputGroup input:focus ~ .bar:before,
+body .inputGroup input:focus ~ .bar:after {
+  width: 50%;
+}
+body .inputGroup input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+body .inputGroup .requeried:invalid ~ label {
+  color: #e22a2a;
+}
+body .inputGroup .requeried:invalid ~ .bar:before,
+body .inputGroup .requeried:invalid ~ .bar:after {
+  background-color: #e22a2a;
+}
+body .inputGroup .bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+body .inputGroup .bar:before,
+body .inputGroup .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #37474f;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+body .inputGroup .bar:before {
+  left: 50%;
+}
+body .inputGroup .bar:after {
+  right: 50%;
+}
+body .inputGroup .highlight {
+  position: absolute;
+  height: 60%;
+  width: 100%;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+body .inputGroup label {
+  color: #757575;
+  font-size: 1.25em;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 0px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #37474f;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #37474f;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+body #addShortcut_content .inputGroup {
+  margin-bottom: 10px;
+}
+body .icon {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  background-repeat: no-repeat;
+  background-image: url(../img/icons_sprite.png);
+}
+body #addShortcut {
+  background-position: -5px -5px;
+  display: block;
+  float: right;
+  margin: 10px 0px;
+}
+body #removeShortcut {
+  background-position: -8px -66px;
+  display: none;
+  margin: auto;
+}
