@@ -2,7 +2,7 @@
   "description": "Modify's 'New Tab' page and adds utilities.",
   "manifest_version": 2,
   "name": "My New Tab",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "homepage_url": "http://www.codeclark.tk",
   "browser_action": {
     "matches": ["https://*"],
@@ -20,7 +20,7 @@
   },
   "permissions": [
     "https://api.unsplash.com/",
-    "http://quotesondesign.com/wp-json/posts",
+    "https://type.fit/api/quotes",
     "tabs",
     "storage"
   ],
