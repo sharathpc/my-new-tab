@@ -119,7 +119,7 @@ function requestImage(_responseCount) {
       if (_responseCount == 2) {
         chrome.storage.local.set({ 'wallpaperData': response, 'timeStamp': new Date().getTime() }, function () {
           wallpaperResponse = response;
-          requestQuote();
+          applyData(true);
         });
       } else {
         chrome.storage.local.get(function (_data) {
@@ -139,38 +139,17 @@ function requestImage(_responseCount) {
   });
 }
 
-/* API Call to Mashape for Quotes data */
-function requestQuote() {
-  $.ajax({
-    url: "https://type.fit/api/quotes",
-    type: "get",
-    success: function (response) {
-      chrome.storage.local.set({ 'quoteData': response }, function () {
-        quoteText = response;
-        $('#preloader').show();
-        applyData(true);
-      });
-    },
-    error: function (xhr) { }
-  });
-}
-
 /* Update Wallpaper/Quotes data to UI */
 function applyData(_isOnline) {
   if (_isOnline) {
-    var randomNum = Math.floor(Math.random() * quoteText.length);
-    $('body').css('background', 'url(' + wallpaperResponse[0].urls.custom + ')');
+    $('body').css('background-image', 'url(' + wallpaperResponse[0].urls.raw + ')');
     $('#photographerInfo').attr('href', 'https://unsplash.com/@' + wallpaperResponse[0].user.username + '?utm_source=my_new_tab&utm_medium=referral').text(wallpaperResponse[0].user.name);
     $('#unsplashInfo').attr('href', 'https://unsplash.com/?utm_source=my_new_tab&utm_medium=referral').text('Unsplash');
-    $('#quote').html(quoteText[randomNum].text);
-    $('#author').text('- ' + quoteText[randomNum].author);
   } else {
     var random = Math.floor(Math.random() * offlineData.length);
-    $('body').css('background', 'url(' + offlineData[random].wallpaperData.url + ')');
+    $('body').css('background-image', 'url(' + offlineData[random].wallpaperData.url + ')');
     $('#photographerInfo').attr('href', '#').text(offlineData[random].wallpaperData.username);
     $('#unsplashInfo').attr('href', '#').text('-');
-    $('#quote').html(offlineData[random].quoteData.content);
-    $('#author').text('- ' + offlineData[random].quoteData.author);
   }
   $('#preloader').hide();
   $('#options_container, #content').show();

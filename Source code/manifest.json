@@ -1,11 +1,10 @@
 {
   "description": "Modify's 'New Tab' page and adds utilities.",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "My New Tab",
-  "version": "3.0.2",
-  "homepage_url": "http://www.codeclark.tk",
-  "browser_action": {
-    "matches": ["https://*"],
+  "version": "4.0.0",
+  "homepage_url": "",
+  "action": {
     "default_icon": "img/icon16.png",
     "default_popup": "popup.html",
     "default_title": "My New Tab"
@@ -19,13 +18,16 @@
     "128": "img/icon128.png"
   },
   "permissions": [
-    "https://api.unsplash.com/",
-    "https://type.fit/api/quotes",
     "tabs",
     "storage"
   ],
+  "host_permissions": [
+    "https://api.unsplash.com/"
+  ],
   "background": {
-    "scripts": ["js/background.js"],
-    "persistent": false
+    "service_worker": "js/background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }

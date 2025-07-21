@@ -3,6 +3,7 @@ body {
   margin: 0px;
   color: #ffffff;
   position: relative;
+  background-size: cover;
 }
 /* CSS Preloader styles starts */
 #preloader {
